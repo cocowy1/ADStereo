@@ -23,7 +23,7 @@ The implementation of the improved version **ADStereo_plus** (stronger performan
 
 # Model Zoo
 
-All pretrained models are available in the [Google Drive](https://drive.google.com/drive/folders/1jdx4-gU8WuytiolZbGDLI-NSUHlQWuH4) and [Google Drive]https://drive.google.com/drive/folders/1WcGgA7OS1lf5JJ3ajbXw-hMtz8cXrQ7k?dmr=1&ec=wgc-drive-globalnav-goto
+All pretrained models are available in the [Google Drive:ADStereo](https://drive.google.com/drive/folders/1jdx4-gU8WuytiolZbGDLI-NSUHlQWuH4) and [Google Drive:ADStereo_fast](https://drive.google.com/drive/folders/1WcGgA7OS1lf5JJ3ajbXw-hMtz8cXrQ7k?dmr=1&ec=wgc-drive-globalnav-goto)
 
 We assume the downloaded weights are located under the `./trained` directory. 
 

@@ -19,7 +19,8 @@ Here is an example result on our system with RTX a5000ada on Ubuntu 20.04
 # Overview
 <img width="900" src="https://github.com/cocowy1/ADStereo/blob/main/figs/framework.png"/></div>
 
-The implementation of the improved version **ADStereo_plus** (stronger performance & faster speed) is also included in this repo.
+# New added
+We introduce a more lightweight model called  **ADStereo_fast** (competetive performance & faster speed), which is also included in this repo.
 
 # Model Zoo
 

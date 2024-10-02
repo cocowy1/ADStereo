@@ -9,8 +9,6 @@ The pretrained KITTI model is loaded from  './fined/KITTI/' datafolders.
 Run `demo_video.py` to perform stereo matching on the raw Kitti sequence.
 Here is an example result on our system with RTX a5000ada on Ubuntu 20.04
 
-https://github.com/user-attachments/assets/0b06b06a-0033-4d5d-ac05-1bcca2b77675
-
 
 # Adaptive Downsampling Module \& Disparity Alignment Module
 

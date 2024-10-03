@@ -35,28 +35,30 @@ except:
             pass
         
 parser = argparse.ArgumentParser(description='GwcNet')
-parser.add_argument('--maxdisp', type=int, default=160,
+parser.add_argument('--maxdisp', type=int, default=192,
                     help='maxium disparity')
 parser.add_argument('--datapath_kitti2015', default='/data1/ywang/dataset/kitti_2015/training/',
                     help='datapath for sceneflow monkaa dataset')
 parser.add_argument('--datapath_kitti', default='/data1/ywang/dataset/kitti_2012/training/',
                      help='datapath for sceneflow monkaa dataset')
+parser.add_argument('--datapath_eth3d', default='/data1/ywang/dataset/eth3d/two_view_training/',
+                     help='datapath for sceneflow monkaa dataset')
+parser.add_argument('--datapath_middlebury', default='/data1/ywang/dataset/middlebury_half/trainingH/',
+                     help='datapath for sceneflow monkaa dataset')
+parser.add_argument('--datapath_middlebury_additional', default='/data1/ywang/dataset/middlebury_half/additionalF/',
+                     help='datapath for sceneflow monkaa dataset')
 
-
-parser.add_argument('--epochs', type=int, default=800,
-                    help='number of epochs to train')
-parser.add_argument('--loadmodel', default=None,
-                    help='load model')
+####
+parser.add_argument('--finetune_type', type=str, default="kit", choices=["kit", "eth3d", "mid"], help="choose the different data type for finetuning")
+parser.add_argument('--epochs', type=int, default=800, help='number of epochs to train')
+parser.add_argument('--loadmodel', default=None, help='load model')
 parser.add_argument('--gpus', type=int, nargs='+', default=[0])
-parser.add_argument('--savemodel', default='/data1/ywang/my_projects/adstereo-main/fined/KITTI/',
-                    help='save model')
+parser.add_argument('--savemodel', default='./fined/KITTI/', help='save model')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables CUDA training')
-parser.add_argument('--seed', type=int, default=1, metavar='S',
-                    help='random seed (default: 1)')
+parser.add_argument('--seed', type=int, default=1, metavar='S', help='random seed (default: 1)')
 parser.add_argument('--print_freq', type=int, default=1, help='the frequency of printing losses (iterations)')
-parser.add_argument('--lrepochs', type=str, default="200:2", help='the epochs to decay lr: the downscale rate')
-parser.add_argument('--lr', type=float, default=5e-4, help='initial learning rate')
+parser.add_argument('--lr', type=float, default=1e-3, help='initial learning rate')
 
 parser.add_argument('--use_structure', default=False, action='store_false', help='use mixed precision')
 parser.add_argument('--refine', default=False, action='store_false', help='use mixed precision')
@@ -70,24 +72,46 @@ torch.manual_seed(args.seed)
 if args.cuda:
     torch.cuda.manual_seed(args.seed)
 
-all_left_img_0, all_right_img_0, all_left_disp_0,  \
-test_left_img_0, test_right_img_0, test_left_disp_0 = DA.dataloader_KITTI2015(args.datapath_kitti2015)
-# #
-all_left_img_1, all_right_img_1, all_left_disp_1,  \
-test_left_img_1, test_right_img_1, test_left_disp_1 = DA.dataloader_KITTI(args.datapath_kitti)
 
-all_left_img = all_left_img_0 + all_left_img_1 
-all_right_img = all_right_img_0 + all_right_img_1
-all_left_disp = all_left_disp_0 + all_left_disp_1 
+if args.finetune_type == 'kit':
+    all_left_img_0, all_right_img_0, all_left_disp_0,  \
+    test_left_img_0, test_right_img_0, test_left_disp_0 = DA.dataloader_KITTI2015(args.datapath_kitti2015)
+    # #
+    all_left_img_1, all_right_img_1, all_left_disp_1,  \
+    test_left_img_1, test_right_img_1, test_left_disp_1 = DA.dataloader_KITTI(args.datapath_kitti)
 
+    all_left_img = all_left_img_0 + all_left_img_1 
+    all_right_img = all_right_img_0 + all_right_img_1
+    all_left_disp = all_left_disp_0 + all_left_disp_1 
+
+    train_dataset = DA.myImageFloder_KITTI(all_left_img, all_right_img, all_left_disp, training=True),
+    test_dataset = DA.myImageFloder_KITTI(test_left_img_1 + test_left_img_0, test_right_img_1 + test_right_img_0, 
+                           test_left_disp_1 + test_left_disp_0, training=False)
+
+elif args.finetune_type == 'eth3d':
+    all_left_img, all_right_img, all_left_disp = DA.dataloader_eth3d(args.datapath_eth3d)
+
+    train_dataset = DA.myImageFloder_eth3d(all_left_img, all_right_img, all_left_disp, training=True),
+    test_dataset = DA.myImageFloder_eth3d(all_left_img, all_right_img, all_left_disp, training=False)
+
+elif args.finetune_type == 'mid':
+
+    all_left_img_0, all_right_img_0, all_left_disp_0 = DA.dataloader_middlebury(args.datapath_middlebury)
+    all_left_img_1, all_right_img_1, all_left_disp_1 = DA.dataloader_middlebury(args.datapath_middlebury_additional)
+
+    all_left_img = all_left_img_0 + all_left_img_1 
+    all_right_img = all_right_img_0 + all_right_img_1
+    all_left_disp = all_left_disp_0 + all_left_disp_1 
+
+    train_dataset = DA.myImageFloder_middlebury(all_left_img, all_right_img, all_left_disp, training=True),
+    test_dataset = DA.myImageFloder_middlebury_additional(all_left_img_0, all_right_img_0, all_left_disp_0, training=False)
+    
+    
 TrainImgLoader = torch.utils.data.DataLoader(
-    DA.myImageFloder_KITTI(all_left_img, all_right_img, all_left_disp, training=True),
-    batch_size=16, shuffle=True, num_workers=8, drop_last=False)
+   train_dataset, batch_size=16, shuffle=True, num_workers=8, drop_last=False)
 
 TestImgLoader = torch.utils.data.DataLoader(
-    DA.myImageFloder_KITTI(test_left_img_1 + test_left_img_0, test_right_img_1 + test_right_img_0, 
-                           test_left_disp_1 + test_left_disp_0, training=False),
-    batch_size=1, shuffle=False, num_workers=4, drop_last=False)
+    test_dataset, batch_size=1, shuffle=False, num_workers=4, drop_last=False)
 
 
 scaler = torch.amp.GradScaler('cuda', args.mixed_precision)

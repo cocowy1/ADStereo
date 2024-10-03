@@ -1,6 +1,6 @@
 # ADStereo
 
-this paper presents two sampling strategies: the Adaptive Downsampling Module (ADM) and the Disparity Alignment Module (DAM), to prioritize real-time inference while ensuring accuracy. The ADM leverages local features to learn adaptive weights, enabling more effective downsampling while preserving crucial structure information. On the other hand, the DAM employs a learnable interpolation strategy to predict transformation offsets of pixels, thereby mitigating the spatial misalignment issue. 
+This paper presents two sampling strategies: the Adaptive Downsampling Module (ADM) and the Disparity Alignment Module (DAM), to prioritize real-time inference while ensuring accuracy. The ADM leverages local features to learn adaptive weights, enabling more effective downsampling while preserving crucial structure information. On the other hand, the DAM employs a learnable interpolation strategy to predict transformation offsets of pixels, thereby mitigating the spatial misalignment issue. 
 Building upon these modules, we introduce **ADStereo**, a real-time yet accurate network that achieves highly competitive performance on multiple public benchmarks. 
 
 # Demo on KITTI raw data
@@ -112,3 +112,8 @@ Run `counts_op.py` to validate FLOPs consumption.
 
 # 5. Results
 <img width="1000" src="https://github.com/cocowy1/ADStereo/blob/main/figs/compare.png"/></div>
+
+
+# Acknowledgements
+
+This project is based on [GwcNet](https://github.com/xy-guo/GwcNet), [IGEV-Stereo](https://github.com/gangweiX/IGEV), and [CoEx](https://github.com/antabangun/coex). We thank the original authors for their excellent works.

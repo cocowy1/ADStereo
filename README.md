@@ -107,8 +107,8 @@ The inference time can be printed  once you run `evaluate_kitti.py`.
 And the inference results on the KITTI dataset can be directly submitted to the online evaluation server for benchmarking.
 
 
-# 5. Evaluate FLOPs 
+# 4. Evaluate FLOPs 
 Run `counts_op.py` to validate FLOPs consumption.
 
-# 6. Results
+# 5. Results
 <img width="1000" src="https://github.com/cocowy1/ADStereo/blob/main/figs/compare.png"/></div>

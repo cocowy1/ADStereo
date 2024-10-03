@@ -99,15 +99,13 @@ DATA
 # 2. Train on SceneFlow
 Run `main.py` to train on the SceneFlow dataset. Please update datapath in `train_kitti.py` as your training data path.
 
-# 3. Finetune on KITTI 2015 \& Inference 
-Run `train_kitti.py` to finetune on the KITTI 2012 \& 2015 dataset. Please update datapath in `train_kitti.py` as your training data path.
+# 3. Finetune \& Inference 
+Run `finetune.py` to finetune on the different real-world datasets. Please update datapath in `finetune.py` as your training data path.
 
 To generate prediction results on the test set of the KITTI dataset, you can run `evaluate_kitti.py`. 
 The inference time can be printed  once you run `evaluate_kitti.py`. 
 And the inference results on the KITTI dataset can be directly submitted to the online evaluation server for benchmarking.
 
-# 4. Finetune on Middlebury
-Run `train_mid.py` to finetune on the KITTI 2012 \& 2015 dataset. Please update datapath in `train_mid.py` as your training data path.
 
 # 5. Evaluate FLOPs 
 Run `counts_op.py` to validate FLOPs consumption.

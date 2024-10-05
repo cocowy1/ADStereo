@@ -6,6 +6,8 @@ Building upon these modules, we introduce **ADStereo**, a real-time yet accurate
 # Demo on KITTI raw data
 The pretrained KITTI model is loaded from  './fined/KITTI/' datafolders. 
 
+https://github.com/user-attachments/assets/326230a6-871d-47ca-abf2-8a5ac4d959b7
+
 
 Run `demo_video.py` to perform stereo matching on the raw Kitti sequence.
 Here is an example result on our system with RTX a5000ada on Ubuntu 20.04

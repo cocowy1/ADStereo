@@ -100,10 +100,10 @@ DATA
 ```
 
 # 2. Train on SceneFlow
-Run `main.py` to train on the SceneFlow dataset. Please update datapath in `train_kitti.py` as your training data path.
+Run `main.py` to train on the SceneFlow dataset. Please update datapath in `main.py` as your training data path.
 
 # 3. Finetune \& Inference 
-Run `finetune.py` to finetune on the different real-world datasets. Please update datapath in `finetune.py` as your training data path.
+Run `finetune.py` to finetune on the different real-world datasets, such as KITTI 2012, KITTI 2015, and ETH3D. Please update datapath in `finetune.py` as your training data path.
 
 To generate prediction results on the test set of the KITTI dataset, you can run `evaluate_kitti.py`. 
 The inference time can be printed  once you run `evaluate_kitti.py`. 

@@ -123,7 +123,7 @@ def train(imgL, imgR, disp_true, epoch):
     if 'structure_discrepancy' in outputs:
         loss += outputs["structure_discrepancy"] 
         
-    epe = torch.mean(torch.abs(outputs[-1][mask] - disp_true[mask]))
+    epe = torch.mean(torch.abs(outputs["disp"][-1][mask] - disp_true[mask]))
     
     scaler.scale(loss).backward()
     scaler.unscale_(optimizer)

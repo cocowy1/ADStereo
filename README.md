@@ -107,6 +107,12 @@ Run `main.py` to train on the SceneFlow dataset. Please update datapath in `main
 # 3. Finetune \& Inference 
 Run `finetune.py` to finetune on the different real-world datasets, such as KITTI 2012, KITTI 2015, and ETH3D. Please update datapath in `finetune.py` as your training data path.
 
+# 4. Evaluate FLOPs 
+Run `counts_op.py` to validate FLOPs consumption.
+# 5. Results
+<img width="1000" src="https://github.com/cocowy1/ADStereo/blob/main/figs/compare.png"/></div>
+
+
 To generate prediction results on the test set of the KITTI dataset, you can run `evaluate_kitti.py`. 
 The inference time can be printed  once you run `evaluate_kitti.py`. 
 And the inference results on the KITTI dataset can be directly submitted to the online evaluation server for benchmarking.

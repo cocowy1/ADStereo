@@ -112,13 +112,6 @@ The inference time can be printed  once you run `evaluate_kitti.py`.
 And the inference results on the KITTI dataset can be directly submitted to the online evaluation server for benchmarking.
 
 
-# 4. Evaluate FLOPs 
-Run `counts_op.py` to validate FLOPs consumption.
-
-# 5. Results
-<img width="1000" src="https://github.com/cocowy1/ADStereo/blob/main/figs/compare.png"/></div>
-
-
 # Acknowledgements
 
 This project is based on [GwcNet](https://github.com/xy-guo/GwcNet), [IGEV-Stereo](https://github.com/gangweiX/IGEV), and [CoEx](https://github.com/antabangun/coex). We thank the original authors for their excellent works.

@@ -1,5 +1,4 @@
-# ADStereo
-
+# ADStereo: [Efficient Stereo Matching with Adaptive Downsampling and Disparity Alignment <TIP 2025>](https://ieeexplore.ieee.org/document/10890914)
 This paper presents two sampling strategies: the Adaptive Downsampling Module (ADM) and the Disparity Alignment Module (DAM), to prioritize real-time inference while ensuring accuracy. The ADM leverages local features to learn adaptive weights, enabling more effective downsampling while preserving crucial structure information. On the other hand, the DAM employs a learnable interpolation strategy to predict transformation offsets of pixels, thereby mitigating the spatial misalignment issue. 
 Building upon these modules, we introduce **ADStereo**, a real-time yet accurate network that achieves highly competitive performance on multiple public benchmarks. 
 
@@ -112,10 +111,27 @@ Run `counts_op.py` to validate FLOPs consumption.
 # 5. Results
 <img width="1000" src="https://github.com/cocowy1/ADStereo/blob/main/figs/compare.png"/></div>
 
-
 To generate prediction results on the test set of the KITTI dataset, you can run `evaluate_kitti.py`. 
 The inference time can be printed  once you run `evaluate_kitti.py`. 
 And the inference results on the KITTI dataset can be directly submitted to the online evaluation server for benchmarking.
+
+
+## Citation
+
+If you find our work useful in your research, please consider citing our paper:
+
+```bibtex
+
+@article{wang2025ad,
+  author={Wang, Yun and Li, Kunhong and Wang, Longguang and Hu, Junjie and Wu, Dapeng Oliver and Guo, Yulan},
+  journal={IEEE Transactions on Image Processing}, 
+  title={ADStereo: Efficient Stereo Matching with Adaptive Downsampling and Disparity Alignment}, 
+  journal={IEEE Transactions on Image Processing},
+  year={2025},
+  publisher={IEEE}
+}
+
+```
 
 
 # Acknowledgements

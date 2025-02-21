@@ -1,4 +1,4 @@
-# ADStereo: Efficient Stereo Matching with Adaptive Downsampling and Disparity Alignment <TIP 2025><https://ieeexplore.ieee.org/document/10890914>
+# ADStereo: Efficient Stereo Matching with Adaptive Downsampling and Disparity Alignment [TIP 2025](<https://ieeexplore.ieee.org/document/10890914)
 This paper presents two sampling strategies: the Adaptive Downsampling Module (ADM) and the Disparity Alignment Module (DAM), to prioritize real-time inference while ensuring accuracy. The ADM leverages local features to learn adaptive weights, enabling more effective downsampling while preserving crucial structure information. On the other hand, the DAM employs a learnable interpolation strategy to predict transformation offsets of pixels, thereby mitigating the spatial misalignment issue. 
 Building upon these modules, we introduce **ADStereo**, a real-time yet accurate network that achieves highly competitive performance on multiple public benchmarks. 
 
